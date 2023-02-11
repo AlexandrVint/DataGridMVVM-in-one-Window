@@ -6,7 +6,46 @@
         xmlns:local="clr-namespace:DataGridMVVM"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Content="Первый множитель" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" FontSize="20"></Label>
+        <Label Content="Второй множитель" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" FontSize="20"></Label>
+        <Label Content="Произведение" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" FontSize="20"></Label>
+
+        <TextBox Grid.Row="1" Grid.Column="0" 
+                 Margin="5" Height="40" 
+                 FontSize="20" 
+                 VerticalContentAlignment="Center" 
+                 HorizontalContentAlignment="Center"></TextBox>
+
+        <TextBox Grid.Row="1" Grid.Column="1" 
+                 Margin="5" Height="40" 
+                 FontSize="20" 
+                 VerticalContentAlignment="Center" 
+                 HorizontalContentAlignment="Center"></TextBox>
+
+        <TextBox Grid.Row="1" Grid.Column="2" 
+                 Margin="5" Height="40" 
+                 FontSize="20" 
+                 VerticalContentAlignment="Center" 
+                 HorizontalContentAlignment="Center" ></TextBox>
+
+        <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" AutoGenerateColumns="False" Margin="5">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Перный множитель" MaxWidth="260" MinWidth="260"></DataGridTextColumn>
+                <DataGridTextColumn Header="Второй множитель" MaxWidth="260" MinWidth="260"></DataGridTextColumn>
+                <DataGridTextColumn Header="Произведение" Width="*"  MinWidth="260"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
