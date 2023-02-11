@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:DataGridMVVM"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="headerstyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        </Style>
+    </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -41,10 +46,11 @@
                  HorizontalContentAlignment="Center" ></TextBox>
 
         <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" AutoGenerateColumns="False" Margin="5">
+            
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Перный множитель" MaxWidth="260" MinWidth="260"></DataGridTextColumn>
-                <DataGridTextColumn Header="Второй множитель" MaxWidth="260" MinWidth="260"></DataGridTextColumn>
-                <DataGridTextColumn Header="Произведение" Width="*"  MinWidth="260"></DataGridTextColumn>
+                <DataGridTextColumn Header="Перный множитель" MaxWidth="260" MinWidth="260" HeaderStyle="{StaticResource headerstyle}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Второй множитель" MaxWidth="260" MinWidth="260" HeaderStyle="{StaticResource headerstyle}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Произведение" Width="*"  MinWidth="260" HeaderStyle="{StaticResource headerstyle}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
