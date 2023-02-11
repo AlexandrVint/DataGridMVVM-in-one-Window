@@ -9,7 +9,7 @@ using DataGridMVVM.Annotations;
 
 namespace DataGridMVVM.ViewModels.Base
 {
-    internal class ViewModel:INotifyPropertyChanged
+    public class ViewModel:INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 

@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:DataGridMVVM.ViewModels"
         xmlns:local="clr-namespace:DataGridMVVM"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -31,19 +32,22 @@
                  Margin="5" Height="40" 
                  FontSize="20" 
                  VerticalContentAlignment="Center" 
-                 HorizontalContentAlignment="Center"></TextBox>
+                 HorizontalContentAlignment="Center"
+                 Text="{Binding DimentionA, UpdateSourceTrigger=PropertyChanged,  Mode=TwoWay}"></TextBox>
 
         <TextBox Grid.Row="1" Grid.Column="1" 
                  Margin="5" Height="40" 
                  FontSize="20" 
                  VerticalContentAlignment="Center" 
-                 HorizontalContentAlignment="Center"></TextBox>
+                 HorizontalContentAlignment="Center"
+                 Text="{Binding DimentionB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></TextBox>
 
         <TextBox Grid.Row="1" Grid.Column="2" 
                  Margin="5" Height="40" 
                  FontSize="20" 
                  VerticalContentAlignment="Center" 
-                 HorizontalContentAlignment="Center" ></TextBox>
+                 HorizontalContentAlignment="Center" 
+                 Text="{Binding Multiplication, UpdateSourceTrigger=PropertyChanged,  Mode=TwoWay}"></TextBox>
 
         <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" AutoGenerateColumns="False" Margin="5">
             

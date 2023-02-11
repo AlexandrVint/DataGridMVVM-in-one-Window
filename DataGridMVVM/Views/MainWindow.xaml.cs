@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DataGridMVVM.ViewModels;
 
 namespace DataGridMVVM
 {
@@ -20,9 +21,16 @@ namespace DataGridMVVM
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
+        public MainWindow(MainWindowViewModel mainWindowViewModel)
         {
             InitializeComponent();
+            DataContext = mainWindowViewModel;
+        }
+
+        public MainWindow()
+        {
+            DataContext = mainWindowViewModel;
         }
     }
 }
