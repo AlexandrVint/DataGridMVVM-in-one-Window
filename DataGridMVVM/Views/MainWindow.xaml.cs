@@ -21,15 +21,12 @@ namespace DataGridMVVM
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
-        public MainWindow(MainWindowViewModel mainWindowViewModel)
-        {
-            InitializeComponent();
-            DataContext = mainWindowViewModel;
-        }
+        public MainWindowViewModel? mainWindowViewModel;
+       
 
         public MainWindow()
         {
+            mainWindowViewModel = new MainWindowViewModel();
             DataContext = mainWindowViewModel;
         }
     }

@@ -18,6 +18,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -33,29 +34,61 @@
                  FontSize="20" 
                  VerticalContentAlignment="Center" 
                  HorizontalContentAlignment="Center"
-                 Text="{Binding DimentionA, UpdateSourceTrigger=PropertyChanged,  Mode=TwoWay}"></TextBox>
+                 Text="{Binding DimentionA, UpdateSourceTrigger=PropertyChanged,  Mode=TwoWay}"
+                 x:Name="TextBoxDimentionA"></TextBox>
 
         <TextBox Grid.Row="1" Grid.Column="1" 
                  Margin="5" Height="40" 
                  FontSize="20" 
                  VerticalContentAlignment="Center" 
                  HorizontalContentAlignment="Center"
-                 Text="{Binding DimentionB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></TextBox>
+                 Text="{Binding DimentionB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                 x:Name="TextBoxDimentionB"></TextBox>
 
         <TextBox Grid.Row="1" Grid.Column="2" 
                  Margin="5" Height="40" 
                  FontSize="20" 
                  VerticalContentAlignment="Center" 
                  HorizontalContentAlignment="Center" 
-                 Text="{Binding Multiplication, UpdateSourceTrigger=PropertyChanged,  Mode=TwoWay}"></TextBox>
+                 Text="{Binding Multiplication, UpdateSourceTrigger=PropertyChanged,  Mode=TwoWay}"
+                 x:Name="MultiplicationAxB"></TextBox>
 
-        <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" AutoGenerateColumns="False" Margin="5">
+        <DataGrid Grid.Row="2" Grid.Column="0" 
+                  Grid.ColumnSpan="3" 
+                  AutoGenerateColumns="False" Margin="5"
+                  ItemsSource="{Binding Collection}"
+                  CanUserAddRows="True">
             
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Перный множитель" MaxWidth="260" MinWidth="260" HeaderStyle="{StaticResource headerstyle}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Второй множитель" MaxWidth="260" MinWidth="260" HeaderStyle="{StaticResource headerstyle}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Произведение" Width="*"  MinWidth="260" HeaderStyle="{StaticResource headerstyle}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Перный множитель" 
+                                    MaxWidth="260" MinWidth="260" 
+                                    HeaderStyle="{StaticResource headerstyle}"
+                                    Binding="{Binding DimentionA, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"></DataGridTextColumn>
+
+                <DataGridTextColumn Header="Второй множитель" 
+                                    MaxWidth="260" MinWidth="260" 
+                                    HeaderStyle="{StaticResource headerstyle}"
+                                    Binding="{Binding DimentionB, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"></DataGridTextColumn>
+
+                <DataGridTextColumn Header="Произведение" Width="*"  
+                                    MinWidth="260" 
+                                    HeaderStyle="{StaticResource headerstyle}"
+                                    Binding="{Binding Multiplication, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"
+                    HorizontalAlignment="Right"
+                    Margin="5">
+            <Button Content="Добавить" 
+                    Margin="5" 
+                    Width="70"
+                    Command="{Binding AddCommand}" CommandParameter="MainWindowViewModel"></Button>
+            <Button Content="Удалить" 
+                    Margin="5" 
+                    Width="70"></Button>
+        </StackPanel>
+
     </Grid>
 </Window>

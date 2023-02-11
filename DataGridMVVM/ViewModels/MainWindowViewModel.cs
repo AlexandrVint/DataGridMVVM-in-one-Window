@@ -1,15 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using DataGridMVVM.Commands;
+using DataGridMVVM.Models;
+using DataGridMVVM.Service;
 using DataGridMVVM.ViewModels.Base;
+using Microsoft.VisualBasic;
 
 namespace DataGridMVVM.ViewModels
 {
     public class MainWindowViewModel:ViewModel
     {
+        public ObservableCollection<MultiplicationModel> Collection { get; set; }
+
+
 
         #region DimentionA : double - первый множитель
         /// <summary>
@@ -25,6 +35,7 @@ namespace DataGridMVVM.ViewModels
                 
                 Set(ref _DimentionA, value);
                 Multiplication = DimentionA * DimentionB;
+                
 
             }
         }
@@ -45,6 +56,7 @@ namespace DataGridMVVM.ViewModels
                 Set(ref _DimentionB, value);
                 Multiplication = DimentionA * DimentionB;
 
+
             } 
         }
         #endregion
@@ -61,6 +73,40 @@ namespace DataGridMVVM.ViewModels
             set => Set(ref _Multiplication, value);
         }
         #endregion
+
+
+        #region Команды
+
+        public ICommand AddCommand { get; }
+
+        private void OnAddCommand(object p)
+        {
+            Collection = new ObservableCollection<MultiplicationModel>();
+            MultiplicationModel maMultiplicationModel = p as MultiplicationModel;
+            maMultiplicationModel.AddMultiplicationModel(DimentionA, DimentionB, Multiplication);
+            Collection.Add(maMultiplicationModel);
+           
+
+
+
+        }
+
+        private bool CanAddCommand(object p)
+        {
+            return true;
+        }
+
+        #endregion
+
+        #region Конструктор
+
+        public MainWindowViewModel()
+        {
+            AddCommand = new LambdaCommand(OnAddCommand, CanAddCommand);
+        }
+
+
+            #endregion
 
     }
 }
