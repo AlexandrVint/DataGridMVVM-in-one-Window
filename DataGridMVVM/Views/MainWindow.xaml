@@ -6,8 +6,10 @@
         xmlns:vm="clr-namespace:DataGridMVVM.ViewModels"
         xmlns:local="clr-namespace:DataGridMVVM"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        DataContext="{DynamicResource vm}">
     <Window.Resources>
+        <vm:MainWindowViewModel x:Key="vm"/>
         <Style x:Key="headerstyle" TargetType="DataGridColumnHeader">
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
         </Style>
@@ -25,33 +27,31 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label Content="Первый множитель" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" FontSize="20"></Label>
-        <Label Content="Второй множитель" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" FontSize="20"></Label>
-        <Label Content="Произведение" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" FontSize="20"></Label>
+        <TextBlock Text="Первый множитель" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" FontSize="20"/>
+        <TextBlock Text="Второй множитель" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" FontSize="20"/>
+        <TextBlock Text="Произведение" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" FontSize="20"/>
 
         <TextBox Grid.Row="1" Grid.Column="0" 
                  Margin="5" Height="40" 
                  FontSize="20" 
                  VerticalContentAlignment="Center" 
                  HorizontalContentAlignment="Center"
-                 Text="{Binding DimentionA, UpdateSourceTrigger=PropertyChanged,  Mode=TwoWay}"
-                 x:Name="TextBoxDimentionA"></TextBox>
+                 Text="{Binding DimentionA, UpdateSourceTrigger=PropertyChanged,  Mode=TwoWay}"/>
 
         <TextBox Grid.Row="1" Grid.Column="1" 
                  Margin="5" Height="40" 
                  FontSize="20" 
                  VerticalContentAlignment="Center" 
                  HorizontalContentAlignment="Center"
-                 Text="{Binding DimentionB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                 x:Name="TextBoxDimentionB"></TextBox>
+                 Text="{Binding DimentionB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
 
         <TextBox Grid.Row="1" Grid.Column="2" 
                  Margin="5" Height="40" 
                  FontSize="20" 
                  VerticalContentAlignment="Center" 
                  HorizontalContentAlignment="Center" 
-                 Text="{Binding Multiplication, UpdateSourceTrigger=PropertyChanged,  Mode=TwoWay}"
-                 x:Name="MultiplicationAxB"></TextBox>
+                 IsReadOnly="True"
+                 Text="{Binding Multiplication, UpdateSourceTrigger=PropertyChanged,  Mode=OneWay}"/>
 
         <DataGrid Grid.Row="2" Grid.Column="0" 
                   Grid.ColumnSpan="3" 

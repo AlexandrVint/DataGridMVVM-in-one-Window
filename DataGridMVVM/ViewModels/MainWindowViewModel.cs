@@ -1,112 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using DataGridMVVM.Commands;
+﻿using DataGridMVVM.Commands;
 using DataGridMVVM.Models;
-using DataGridMVVM.Service;
-using DataGridMVVM.ViewModels.Base;
-using Microsoft.VisualBasic;
+using MVVM.ViewModels;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace DataGridMVVM.ViewModels
 {
-    public class MainWindowViewModel:ViewModel
+    public class MainWindowViewModel : ViewModelBase
     {
-        public ObservableCollection<MultiplicationModel> Collection { get; set; }
+        public ObservableCollection<OperationEntity> Collection { get; } = new();
 
 
 
-        #region DimentionA : double - первый множитель
-        /// <summary>
-        /// первый множитель
-        /// </summary>
-        private double _DimentionA;
-
+        #region Свойства
+        /// <summary>Первый множитель.</summary>
         public double DimentionA
         {
-            get => _DimentionA;
-            set
-            {
-                
-                Set(ref _DimentionA, value);
-                Multiplication = DimentionA * DimentionB;
-                
-
-            }
+            get => Get<double>();
+            set => Set(value);
         }
-        #endregion
 
-        #region DimentionB : double - второй множитель
-        /// <summary>
-        /// второй множитель
-        /// </summary>
-        private double _DimentionB;
-
+        /// <summary>Второй множитель.</summary>
         public double DimentionB
         {
-            get => _DimentionB;
-            set
-            {
-                
-                Set(ref _DimentionB, value);
-                Multiplication = DimentionA * DimentionB;
-
-
-            } 
+            get => Get<double>();
+            set => Set(value);
         }
-        #endregion
 
-        #region Multiplication : double - произведение
-        /// <summary>
-        /// произведение
-        /// </summary>
-        private double _Multiplication;
-
+        /// <summary>Произведение.</summary>
         public double Multiplication
         {
-            get => _Multiplication;
-            set => Set(ref _Multiplication, value);
+            get => Get<double>();
+            private set => Set(value);
         }
         #endregion
 
 
         #region Команды
+        public RelayCommand AddCommand => GetCommand(AddCommandExecute);
 
-        public ICommand AddCommand { get; }
-
-        private void OnAddCommand(object p)
+        private void AddCommandExecute()
         {
-            Collection = new ObservableCollection<MultiplicationModel>();
-            MultiplicationModel maMultiplicationModel = p as MultiplicationModel;
-            maMultiplicationModel.AddMultiplicationModel(DimentionA, DimentionB, Multiplication);
-            Collection.Add(maMultiplicationModel);
-           
-
-
-
+            Collection.Add(new OperationEntity("Умножение", DimentionA, DimentionB, Multiplication));
         }
-
-        private bool CanAddCommand(object p)
-        {
-            return true;
-        }
-
         #endregion
 
-        #region Конструктор
-
-        public MainWindowViewModel()
+        protected override void OnPropertyChanged(string propertyName, object? oldValue, object? newValue)
         {
-            AddCommand = new LambdaCommand(OnAddCommand, CanAddCommand);
+            base.OnPropertyChanged(propertyName, oldValue, newValue);
+            if(propertyName is nameof(DimentionA) or nameof(DimentionB))
+            {
+                Multiplication= DimentionA * DimentionB;
+            }
         }
-
-
-            #endregion
 
     }
 }

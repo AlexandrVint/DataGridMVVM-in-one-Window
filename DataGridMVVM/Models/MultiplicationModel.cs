@@ -1,27 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataGridMVVM.Models
+﻿namespace DataGridMVVM.Models
 {
-    public class MultiplicationModel
+    public class OperationEntity
     {
-        public double _DimentionA { get; set; }
+        public string Name { get; }
+        public double FirstOperand { get; }
 
-        public double _DimentionB { get; set; }
+        public double SecondOperand { get; }
 
-        public double _Multiplication { get; set; }
+        public double Result { get; }
 
-        public void AddMultiplicationModel(double DimentionA, double DimentionB, double Multiplication)
+        public OperationEntity(string name, double firstOperand, double secondOperand, double result)
         {
-            _DimentionA = DimentionA;
-            _DimentionB = DimentionB;
-            _Multiplication = Multiplication;
+            Name = name;
+            FirstOperand = firstOperand;
+            SecondOperand = secondOperand;
+            Result = result;
         }
-
-
-
     }
 }
